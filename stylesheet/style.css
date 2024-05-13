@@ -1,0 +1,151 @@
+:root {
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size) * .9);
+}
+
+html {
+    display: table;
+    margin: auto;
+  }
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #280e3b;
+    display: table-cell;
+    vertical-align: middle;
+}
+table {
+    border: 1px solid;
+    width: 400px;
+    height: 100px;
+    margin-top: 5em;
+}
+
+td,
+tr {
+    border: 1px solid;
+    width: 100px;
+    height: 100px;
+    background: white;
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    position: relative;
+    cursor: pointer;
+}
+
+.cell.x,
+.cell.circle {
+    cursor: not-allowed;
+}
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
+    content: '';
+    width: calc(var(--mark-size) * .15); 
+    height: var(--mark-size);
+    background-color: black;
+    position: absolute;
+   
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before {
+    transform: rotate(45deg);
+    top: calc(50% - var(--mark-size) / 2);
+    left: calc(50% - var(--mark-size) * 0.15 / 2); 
+}
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after{
+    transform: rotate(-45deg);
+    top: calc(50% - var(--mark-size) / 2);
+    left: calc(50% - var(--mark-size) * 0.15 / 2); 
+}
+
+.cell.circle::before,
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before{
+    width: calc(var(--mark-size) * 0.9);
+    height: calc(var(--mark-size) * 0.9);
+    top: calc(50% - var(--mark-size) / 2.2);
+    background-color: black;
+    left: calc(50% - var(--mark-size) / 2.2); 
+}
+
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+    width: calc(var(--mark-size) * .7);
+    height: calc(var(--mark-size) * .7);
+    top: calc(50% - var(--mark-size) / 2.85);
+    left: calc(50% - var(--mark-size) / 2.85); 
+    background-color: white;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
+    background-color: lightgray;
+}
+
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+    background-color: lightgray;
+}
+
+.board.circle .cell:not(.x):not(.circle):hover::after {
+    background-color: white;
+}
+
+.restart {
+    width: 80px;
+    height: 40px;
+    margin-top: 10px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 20px;
+    border: none;
+}
+
+.win-message {
+    position: fixed;
+    border: 3px solid;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, .9);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+}
+
+.message-text {
+    color: white;
+    font-size: 30px;
+}
+
+.restart:hover {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+}
+
+.show {
+    display: flex;
+}
+
